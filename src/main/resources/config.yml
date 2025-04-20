@@ -1,0 +1,27 @@
+# Available drivers: h2, mysql
+# If you are using h2, you don't need to specify the host, port, db-name,
+# username and password due to h2 is local database.
+database:
+  driver: h2
+  host: 101.101.101.101
+  port: 3306
+  db-name: disasters
+  username: userNaMeForDisasters
+  password: passw0rD
+
+timing:
+  give-weapon: 5
+  remove-weapon: 5
+
+# All the items from plugin
+# The slot is at hotbar, the first slot is 0 and the last is 8.
+items:
+  # The weapon given to players, in a near future we will add more based on permissions.
+  weapon:
+    # This is the time in seconds that the weapon will remove from players inventory if is not equipped at main hand.
+    slot: 4
+    name: "<rainbow>Ultra sword"
+    material: DIAMOND_SWORD
+    lore:
+      - "<green>Ultra sword"
+      - "<red>Ultra sword"

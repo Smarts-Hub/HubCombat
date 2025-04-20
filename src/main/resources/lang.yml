@@ -1,0 +1,5 @@
+messages:
+  give-weapon-on: "<gray>Giving weapon in <gold>%hubcombat_time_left% <gray>seconds!"
+  give-weapon-off: "<gray>Removing weapon in <gold>%hubcombat_time% <gray>seconds!"
+  weapon-given: "<green>Weapon given!"
+  combat-disabled: "<red>Combat disabled!"
