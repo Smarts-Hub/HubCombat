@@ -3,6 +3,7 @@ package dev.smartshub.hubCombat
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.command.HubCombatCommand
+import dev.smartshub.hubCombat.hook.PlaceholderAPIHook
 import dev.smartshub.hubCombat.listener.*
 import dev.smartshub.hubCombat.service.PDCCheckService
 import dev.smartshub.hubCombat.service.WeaponProvideService
@@ -33,6 +34,8 @@ class HubCombat : ZapperJavaPlugin() {
         // Register commands and events
         registerCommands()
         registerEvents()
+
+        // Hook other plugins
 
     }
 
@@ -68,4 +71,16 @@ class HubCombat : ZapperJavaPlugin() {
         server.pluginManager.registerEvents(PlayerLeaveListener(timer, allowCombatHandler), this)
         server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService), this)
     }
+
+    private fun hook(){
+        server.pluginManager.getPlugin("PlaceholderAPI")
+            ?.let {
+                if (it.isEnabled) {
+                    PlaceholderAPIHook(timer).register()
+                }
+            } ?: run {
+            logger.warning("PlaceholderAPI is not enabled. Some features may not work.")
+        }
+    }
+
 }
