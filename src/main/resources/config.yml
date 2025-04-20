@@ -5,8 +5,8 @@ database:
   driver: h2
   host: 101.101.101.101
   port: 3306
-  db-name: disasters
-  username: userNaMeForDisasters
+  db-name: hubcombat
+  username: userNaMeForHubCombat
   password: passw0rD
 
 timing:

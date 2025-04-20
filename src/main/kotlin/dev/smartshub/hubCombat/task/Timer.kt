@@ -4,6 +4,7 @@ import dev.smartshub.hubCombat.HubCombat
 import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.service.PDCCheckService
 import dev.smartshub.hubCombat.storage.file.FileManager
+import dev.smartshub.hubCombat.util.Msg
 import org.bukkit.scheduler.BukkitRunnable
 import java.util.UUID
 
@@ -18,13 +19,17 @@ class Timer(
     private val enableTime = FileManager.get("config")?.getInt("timing.give-weapon") ?: 5
     private val disableTime = FileManager.get("config")?.getInt("timing.remove-weapon") ?: 5
 
-    fun addPlayer(player: UUID) {
+    fun addPlayerToEnable(player: UUID) {
         toEnable[player] = enableTime
+    }
+
+    fun addPlayerToDisable(player: UUID) {
+        toDisable[player] = disableTime
     }
 
     fun attemptToDisable(player: UUID) {
         if (!allowCombatHandler.isInCombat(player)) return
-        toDisable[player] = disableTime
+        addPlayerToDisable(player)
     }
 
     fun getTime(player: UUID): Int {
@@ -43,10 +48,12 @@ class Timer(
 
             if (!holding) {
                 toEnable.remove(uuid)
+                addPlayerToDisable(uuid)
                 return@forEach
             }
 
             toEnable[uuid] = toEnable[uuid]!! - 1
+            Msg.send(player, "enabling-combat-on")
             if (toEnable[uuid]!! <= 0) {
                 allowCombatHandler.allowCombat(uuid)
                 toEnable.remove(uuid)
@@ -55,6 +62,7 @@ class Timer(
 
         // Disable PvP
         toDisable.keys.toList().forEach { uuid ->
+
             val player = plugin.server.getPlayer(uuid) ?: return@forEach
             val holding = pdcCheckService.hasHubCombatTag(player.inventory.itemInMainHand)
 
@@ -64,6 +72,7 @@ class Timer(
             }
 
             toDisable[uuid] = toDisable[uuid]!! - 1
+            Msg.send(player, "disabling-combat-on")
             if (toDisable[uuid]!! <= 0) {
                 allowCombatHandler.disallowCombat(uuid)
                 toDisable.remove(uuid)

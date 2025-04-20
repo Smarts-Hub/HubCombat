@@ -17,15 +17,17 @@ class ItemHoldListener(
     fun onItemHold(event: PlayerItemHeldEvent) {
         val player = event.player
         val slot = event.newSlot
-        val item = player.inventory.getItem(slot) ?: return
+        val item = player.inventory.getItem(slot)
 
-        // This will handle by task, then return
-        if(allowCombatHandler.isInCombat(player.uniqueId)) return
+        if(pdcCheckService.hasHubCombatTag(item) && !allowCombatHandler.isInCombat(player.uniqueId)) {
+            timer.addPlayerToEnable(player.uniqueId)
+            return
+        }
 
-        // If is not a weapon from the plugin, then return
-        if(!pdcCheckService.hasHubCombatTag(item)) return
-
-        timer.addPlayer(player.uniqueId)
+        if(!pdcCheckService.hasHubCombatTag(item) && allowCombatHandler.isInCombat(player.uniqueId)) {
+            timer.addPlayerToDisable(player.uniqueId)
+            return
+        }
 
     }
 

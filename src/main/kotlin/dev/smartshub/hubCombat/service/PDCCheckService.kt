@@ -8,7 +8,8 @@ import org.bukkit.persistence.PersistentDataType
 class PDCCheckService(private val plugin: HubCombat) {
 
     // As obvious, this method checks if the item has the PersistentDataContainer tag
-    fun hasHubCombatTag(item: ItemStack): Boolean {
+    fun hasHubCombatTag(item: ItemStack?): Boolean {
+        item ?: return false
         if (!item.hasItemMeta()) return false
         val meta = item.itemMeta ?: return false
 

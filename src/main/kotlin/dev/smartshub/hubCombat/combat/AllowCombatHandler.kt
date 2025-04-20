@@ -18,13 +18,14 @@ class AllowCombatHandler(
         if (combatAllowed.contains(playerId)) return
         combatAllowed.add(playerId)
         val player = plugin.server.getPlayer(playerId) ?: return
-        Msg.send(player, "messages.weapon-given")
+        Msg.send(player, "combat-enabled")
     }
 
     fun disallowCombat(playerId: UUID) {
         if (!combatAllowed.contains(playerId)) return
+        combatAllowed.remove(playerId)
         val player = plugin.server.getPlayer(playerId) ?: return
-        Msg.send(player, "messages.weapon-given")
+        Msg.send(player, "combat-disabled")
     }
 
     fun clearCombatAllowed() {

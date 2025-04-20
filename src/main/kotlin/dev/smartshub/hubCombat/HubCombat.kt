@@ -36,6 +36,7 @@ class HubCombat : ZapperJavaPlugin() {
         registerEvents()
 
         // Hook other plugins
+        hook()
 
     }
 
@@ -68,18 +69,13 @@ class HubCombat : ZapperJavaPlugin() {
         server.pluginManager.registerSuspendingEvents(PlayerHitListener(pdcCheckService, allowCombatHandler), this)
         server.pluginManager.registerSuspendingEvents(PlayerDeathListener(pdcCheckService, allowCombatHandler), this)
         server.pluginManager.registerEvents(ItemHoldListener(pdcCheckService, allowCombatHandler, timer), this)
+        server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService, pdcCheckService, timer), this)
         server.pluginManager.registerEvents(PlayerLeaveListener(timer, allowCombatHandler), this)
-        server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService), this)
     }
 
     private fun hook(){
-        server.pluginManager.getPlugin("PlaceholderAPI")
-            ?.let {
-                if (it.isEnabled) {
-                    PlaceholderAPIHook(timer).register()
-                }
-            } ?: run {
-            logger.warning("PlaceholderAPI is not enabled. Some features may not work.")
+        if(server.pluginManager.getPlugin("PlaceholderAPI") != null) {
+            PlaceholderAPIHook(timer).register()
         }
     }
 

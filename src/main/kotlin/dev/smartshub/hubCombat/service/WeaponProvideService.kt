@@ -22,7 +22,7 @@ class WeaponProvideService(private val plugin: HubCombat) {
     private fun buildWeapon(player: Player) : ItemStack {
         // Getting values from config
         val name = FileManager.get("config")?.getString("items.weapon.name")
-        val materialStr = FileManager.get("material")?.getString("items.weapon.material")
+        val materialStr = FileManager.get("config")?.getString("items.weapon.material")
         val lore = FileManager.get("config")?.getStringList("items.weapon.lore")
 
         // Build raw item
@@ -40,7 +40,5 @@ class WeaponProvideService(private val plugin: HubCombat) {
         item.itemMeta = meta
         return item
     }
-
-
 
 }
