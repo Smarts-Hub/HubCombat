@@ -1,30 +1,56 @@
-# Hub Combat
-### Simple but sexy plugin for enhance your lobby adding weapons! 
+# ⚔️ Hub Combat  
+### A simple yet *sexy* plugin to spice up your lobby with weapons and PvP!
 
-## Why hub combat
-Easy to use, free, optimized and feature rich!
+---
 
-It's the first hub combat plugin that includes placeholders!
-Also, you can suggest any idea to us at discord or github, which we will think about and probably add.
+## 💡 Why **Hub Combat**?
 
-## Features
-- Fully customizable name and lore (MiniMessage based), with PlaceholderAPI support (add placeholders to name or lore!).
-- Placeholders: time left, kills, deaths and hits.
-- Built in performance
+✅ **Easy to use**  
+✅ **Free & open source**  
+✅ **Optimized for performance**  
+✅ **Packed with features**
 
-## Commands, permissions and placeholders
-- `/hubcombat reload` - reload config and players status. Requieres `hubcombat.admin` permission.
-- Placeholders: `%hubcombat_kills%`,  `%hubcombat_deaths%`,  `%hubcombat_hits%`, `%hubcombat_time_left%`.
+💬 It's the **first hub PvP plugin** with native PlaceholderAPI support!  
+💡 Got ideas? Suggest them on **[Discord]** or **GitHub**, and we might just add them in the next release!
 
-## Usage and installation
-Simply download the plugin .jar, upload to your plugins folder and restart the server.
-By default h2 storage is enabled, you don't need to setup that database, but you can migrate to MySQL if multi-lobby is intended!
-Messages can be modified at lang.yml file.
+---
 
-On join the weapon will be given to players. They must wait the time specified in config with the weapon equiped in main hand in order to start pvp.
-PvP is blocked by the plugin if players/entities are not holding the weapon.
+## ✨ Features
 
-## Roadmap
-- Add multiple weapons based on permissions.
-- Add (multiple) armor(s) based on permissions too.
-- More placeholders if suggested.
+- 🔧 Fully customizable **item name & lore** using **MiniMessage** and **PlaceholderAPI**.
+- 🏷️ Built-in **placeholders**: time left, kills, deaths, hits.
+- 🚀 Lightweight and performance-focused.
+
+---
+
+## 🔐 Commands & Placeholders
+
+- `/hubcombat reload` – Reload config and player stats. Requires `hubcombat.admin` permission.
+
+### 📌 Placeholders:
+- `%hubcombat_kills%`
+- `%hubcombat_deaths%`
+- `%hubcombat_hits%`
+- `%hubcombat_time_left%`
+
+---
+
+## ⚙️ Installation & Usage
+
+1. 📥 Drop the `.jar` into your `/plugins` folder.
+2. 🔁 Restart the server.
+3. ✅ H2 database is used by default — **no setup required**.
+   - You can switch to **MySQL** for multi-lobby support.
+4. 🗣️ Customize all messages via `lang.yml`.
+
+🛡️ On join, players receive the weapon. PvP is enabled **only** if the weapon is equipped for the configured amount of time.  
+👊 Entities or players without the weapon **can't deal damage** — total control over hub PvP!
+
+---
+
+## 🛣️ Roadmap
+
+- 🗡️ Add **multiple weapons** via permissions.
+- 🛡️ Add **multiple armors** via permissions.
+- 🧩 More placeholders — suggest yours!
+
