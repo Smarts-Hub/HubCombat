@@ -5,6 +5,7 @@ import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.command.HubCombatCommand
 import dev.smartshub.hubCombat.hook.PlaceholderAPIHook
 import dev.smartshub.hubCombat.listener.*
+import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.service.PDCCheckService
 import dev.smartshub.hubCombat.service.WeaponProvideService
 import dev.smartshub.hubCombat.storage.data.Data
@@ -22,6 +23,7 @@ class HubCombat : ZapperJavaPlugin() {
     private lateinit var weaponProvideService: WeaponProvideService
     private lateinit var allowCombatHandler: AllowCombatHandler
     private lateinit var pdcCheckService: PDCCheckService
+    private lateinit var cooldownService: CooldownService
 
     override fun onEnable() {
 
@@ -56,7 +58,8 @@ class HubCombat : ZapperJavaPlugin() {
         weaponProvideService = WeaponProvideService(this)
         allowCombatHandler = AllowCombatHandler(this)
         pdcCheckService = PDCCheckService(this)
-        timer = Timer(this, allowCombatHandler, pdcCheckService)
+        cooldownService = CooldownService()
+        timer = Timer(this, allowCombatHandler, pdcCheckService, cooldownService)
     }
 
     private fun registerCommands() {
@@ -68,14 +71,14 @@ class HubCombat : ZapperJavaPlugin() {
     private fun registerEvents() {
         server.pluginManager.registerSuspendingEvents(PlayerHitListener(pdcCheckService, allowCombatHandler), this)
         server.pluginManager.registerSuspendingEvents(PlayerDeathListener(pdcCheckService, allowCombatHandler), this)
-        server.pluginManager.registerEvents(ItemHoldListener(pdcCheckService, allowCombatHandler, timer), this)
-        server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService, pdcCheckService, timer), this)
-        server.pluginManager.registerEvents(PlayerLeaveListener(timer, allowCombatHandler), this)
+        server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService, pdcCheckService, cooldownService), this)
+        server.pluginManager.registerEvents(ItemHoldListener(pdcCheckService, allowCombatHandler, cooldownService), this)
+        server.pluginManager.registerEvents(PlayerLeaveListener(allowCombatHandler, cooldownService), this)
     }
 
     private fun hook(){
         if(server.pluginManager.getPlugin("PlaceholderAPI") != null) {
-            PlaceholderAPIHook(timer).register()
+            PlaceholderAPIHook(cooldownService).register()
         }
     }
 

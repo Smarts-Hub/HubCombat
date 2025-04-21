@@ -1,12 +1,13 @@
 package dev.smartshub.hubCombat.hook
 
+import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.storage.data.Data
 import dev.smartshub.hubCombat.task.Timer
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 
 class PlaceholderAPIHook(
-    private val timer: Timer
+    private val cooldownService: CooldownService
 ) : PlaceholderExpansion() {
 
     override fun getIdentifier(): String {
@@ -36,7 +37,7 @@ class PlaceholderAPIHook(
             }
 
             "time_left" -> {
-                timer.getTime(player.uniqueId).toString()
+                cooldownService.getTime(player.uniqueId).toString()
             }
 
             else -> {

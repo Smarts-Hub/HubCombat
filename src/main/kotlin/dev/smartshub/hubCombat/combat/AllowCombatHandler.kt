@@ -32,4 +32,5 @@ class AllowCombatHandler(
         combatAllowed.clear()
     }
 
+
 }

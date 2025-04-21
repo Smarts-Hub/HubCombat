@@ -1,5 +1,6 @@
 package dev.smartshub.hubCombat.listener
 
+import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.service.PDCCheckService
 import dev.smartshub.hubCombat.service.WeaponProvideService
 import dev.smartshub.hubCombat.task.Timer
@@ -10,7 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 class PlayerJoinListener(
     private val weaponProvideService: WeaponProvideService,
     private val pdcCheckService: PDCCheckService,
-    private val timer: Timer
+    private val cooldownService: CooldownService
 ) : Listener {
 
     @EventHandler
@@ -22,7 +23,7 @@ class PlayerJoinListener(
         // So we need to check if the player has the item in the inventory
         player.inventory.itemInMainHand?.let { item ->
             if (pdcCheckService.hasHubCombatTag(item)) {
-                timer.addPlayerToEnable(player.uniqueId)
+                cooldownService.addPlayerToEnable(player.uniqueId)
             }
         }
 
