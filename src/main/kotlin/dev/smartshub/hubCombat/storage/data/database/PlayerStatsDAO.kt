@@ -24,7 +24,7 @@ class PlayerStatsDAO(
             "mysql" -> {
                 val host = config.getString("database.host") ?: "localhost"
                 val port = config.getInt("database.port") ?: 3306
-                val databaseName = config.getString("database.name") ?: "database"
+                val databaseName = config.getString("database.db-name") ?: "database"
                 val user = config.getString("database.user") ?: "root"
                 val password = config.getString("database.password") ?: ""
 
@@ -38,7 +38,7 @@ class PlayerStatsDAO(
             }
             "h2" -> {
                 plugin.logger.info("Loading H2 database...")
-                val databaseName = config.getString("database.name") ?: "database"
+                val databaseName = config.getString("database.db-name") ?: "database"
                 val url = "jdbc:h2:file:./data/$databaseName;DB_CLOSE_DELAY=-1;"
                 Database.connect(
                     url = url,
