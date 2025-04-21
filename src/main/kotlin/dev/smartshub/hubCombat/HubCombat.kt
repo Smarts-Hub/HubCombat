@@ -71,9 +71,11 @@ class HubCombat : ZapperJavaPlugin() {
     private fun registerEvents() {
         server.pluginManager.registerSuspendingEvents(PlayerHitListener(pdcCheckService, allowCombatHandler), this)
         server.pluginManager.registerSuspendingEvents(PlayerDeathListener(pdcCheckService, allowCombatHandler), this)
+        server.pluginManager.registerEvents(PlayerRespawnListener(weaponProvideService, pdcCheckService, cooldownService), this)
         server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService, pdcCheckService, cooldownService), this)
         server.pluginManager.registerEvents(ItemHoldListener(pdcCheckService, allowCombatHandler, cooldownService), this)
         server.pluginManager.registerEvents(PlayerLeaveListener(allowCombatHandler, cooldownService), this)
+        server.pluginManager.registerEvents(DropItemListener(pdcCheckService), this)
     }
 
     private fun hook(){

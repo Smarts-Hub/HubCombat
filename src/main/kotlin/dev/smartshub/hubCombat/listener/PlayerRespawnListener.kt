@@ -4,8 +4,8 @@ import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.service.PDCCheckService
 import dev.smartshub.hubCombat.service.WeaponProvideService
 import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerRespawnEvent
-import java.net.http.WebSocket.Listener
 
 class PlayerRespawnListener(
     private val weaponProvideService: WeaponProvideService,
