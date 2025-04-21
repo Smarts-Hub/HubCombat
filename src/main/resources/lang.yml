@@ -3,4 +3,5 @@ messages:
   disabling-combat-on: "<gray>Disabling combat in <gold>%hubcombat_time_left% <gray>seconds!"
   combat-enabled: "<green>Combat enabled!"
   combat-disabled: "<red>Combat disabled!"
+  cant-drop-item: "<red>You can't drop this item!"
   reload-complete: "<green>Reload complete!"
