@@ -22,9 +22,10 @@ class PlayerJoinListener(
         // If player join with the slot of the weapon, it will not work
         // So we need to check if the player has the item in the inventory
         player.inventory.itemInMainHand?.let { item ->
-            if (pdcCheckService.hasHubCombatTag(item)) {
-                cooldownService.addPlayerToEnable(player.uniqueId)
+            if (!pdcCheckService.hasHubCombatTag(item)) {
+                return
             }
+            cooldownService.addPlayerToEnable(player.uniqueId)
         }
 
     }
