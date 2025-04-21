@@ -25,7 +25,7 @@ class PlaceholderAPIHook(
     override fun onPlaceholderRequest(player: Player, identifier: String): String? {
         return when(identifier) {
             "kills" -> {
-                Data.getHitsFromCache(player.uniqueId).toString()
+                Data.getKillsFromCache(player.uniqueId).toString()
             }
 
             "deaths" -> {
