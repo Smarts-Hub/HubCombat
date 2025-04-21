@@ -11,7 +11,7 @@
 ✅ **Packed with features**
 
 💬 It's the **first hub PvP plugin** with native PlaceholderAPI support!  
-💡 Got ideas? Suggest them on **[Discord]** or **GitHub**, and we might just add them in the next release!
+💡 Got ideas? Suggest them on **[Discord](https://discord.smartshub.dev/)** or **GitHub**, and we might just add them in the next release!
 
 ---
 
