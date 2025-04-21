@@ -6,6 +6,7 @@ import dev.smartshub.hubCombat.storage.file.FileManager
 import me.clip.placeholderapi.PlaceholderAPI
 import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.minimessage.MiniMessage
+import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 object Msg {
@@ -18,7 +19,7 @@ object Msg {
     }
 
     fun parse(msg : String, player: Player) : TextComponent {
-        return miniMsg.deserialize(placeholder(msg, player)) as TextComponent
+        return parse(placeholder(msg, player))
     }
 
     fun parse(msg : String) : TextComponent {
@@ -37,6 +38,10 @@ object Msg {
         plugin.launch {
             player.sendMessage(parse(getMsg(path), player))
         }
+    }
+
+    fun send(sender: CommandSender, path: String){
+        sender.sendMessage(parse(getMsg(path)))
     }
 
     private fun getMsg(path: String) : String {
