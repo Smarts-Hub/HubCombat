@@ -1,5 +1,6 @@
 package dev.smartshub.hubCombat.hook
 
+import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.storage.data.Data
 import dev.smartshub.hubCombat.task.Timer
@@ -7,7 +8,8 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 
 class PlaceholderAPIHook(
-    private val cooldownService: CooldownService
+    private val cooldownService: CooldownService,
+    private val allowCombatHandler: AllowCombatHandler
 ) : PlaceholderExpansion() {
 
     override fun getIdentifier(): String {
@@ -38,6 +40,14 @@ class PlaceholderAPIHook(
 
             "time_left" -> {
                 cooldownService.getTime(player.uniqueId).toString()
+            }
+
+            "is_in_combat" -> {
+                if(allowCombatHandler.isInCombat(player.uniqueId)) {
+                    "true"
+                } else {
+                    "false"
+                }
             }
 
             else -> {
