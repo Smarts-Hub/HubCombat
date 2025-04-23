@@ -2,7 +2,6 @@ package dev.smartshub.hubCombat.listener
 
 import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.service.CooldownService
-import dev.smartshub.hubCombat.task.Timer
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
