@@ -14,14 +14,32 @@ timing:
   remove-weapon: 5
 
 # All the items from plugin
-# The slot is at hotbar, the first slot is 0 and the last is 8.
-items:
-  # The weapon given to players, in a near future we will add more based on permissions.
-  weapon:
-    # This is the time in seconds that the weapon will remove from players inventory if is not equipped at main hand.
-    slot: 4
-    name: "<rainbow>Ultra sword"
-    material: DIAMOND_SWORD
-    lore:
-      - "<green>Ultra sword"
-      - "<red>Ultra sword"
+# U can add as many loadouts as u want! Also, u can add as many items
+# as u want in the loadouts, just copy and paste the "template" for items
+loadouts:
+  default:
+    permission: hubcombat.loadout.default
+    items:
+      - slot: 4
+        material: DIAMOND_SWORD
+        name: "<gray>Default Sword"
+        lore:
+          - "<white>Basic starter sword"
+        enchantments:
+          DAMAGE_ALL: 3
+          DURABILITY: 2
+        flags:
+          - HIDE_ENCHANTS
+          - HIDE_ATTRIBUTES
+
+  vip:
+    permission: hubcombat.loadout.vip
+    items:
+      - slot: 4
+        material: NETHERITE_SWORD
+        name: "<green>VIP Sword"
+        lore:
+          - "<gold>Only for VIPs"
+        enchantments:
+          DAMAGE_ALL: 5
+          KNOCKBACK: 2
