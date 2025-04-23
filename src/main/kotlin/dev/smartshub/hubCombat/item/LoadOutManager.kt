@@ -1,5 +1,6 @@
 package dev.smartshub.hubCombat.item
 
+import dev.smartshub.hubCombat.HubCombat
 import dev.smartshub.hubCombat.storage.file.Configuration
 import dev.smartshub.hubCombat.storage.file.FileManager
 import org.bukkit.Bukkit
@@ -8,7 +9,9 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemFlag
 
-class LoadOutManager() {
+class LoadOutManager(
+    private val plugin: HubCombat
+) {
 
     private var config: Configuration = FileManager.get("config")!!
     private val loadouts: Map<String, LoadOut> = loadLoadouts()
@@ -63,7 +66,7 @@ class LoadOutManager() {
                     runCatching { ItemFlag.valueOf(it.toString().uppercase()) }.getOrNull()
                 } ?: emptyList()
 
-                itemsList.add(LoadOutItem(slot, material, name, lore, enchantments, flags))
+                itemsList.add(LoadOutItem(slot, material, name, lore, enchantments, flags, plugin))
             }
 
             result[key] = LoadOut(permission, itemsList)
