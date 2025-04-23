@@ -4,10 +4,10 @@ import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.command.HubCombatCommand
 import dev.smartshub.hubCombat.hook.PlaceholderAPIHook
+import dev.smartshub.hubCombat.item.LoadOutManager
 import dev.smartshub.hubCombat.listener.*
 import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.service.PDCCheckService
-import dev.smartshub.hubCombat.service.WeaponProvideService
 import dev.smartshub.hubCombat.storage.data.Data
 import dev.smartshub.hubCombat.storage.file.FileManager
 import dev.smartshub.hubCombat.task.Timer
@@ -20,8 +20,8 @@ import revxrsal.zapper.ZapperJavaPlugin
 class HubCombat : ZapperJavaPlugin() {
 
     private lateinit var timer: Timer
-    private lateinit var weaponProvideService: WeaponProvideService
     private lateinit var allowCombatHandler: AllowCombatHandler
+    private lateinit var loadOutManager: LoadOutManager
     private lateinit var pdcCheckService: PDCCheckService
     private lateinit var cooldownService: CooldownService
 
@@ -55,7 +55,7 @@ class HubCombat : ZapperJavaPlugin() {
         Msg.init(this)
 
         // Then init the objects
-        weaponProvideService = WeaponProvideService(this)
+        loadOutManager = LoadOutManager(this)
         allowCombatHandler = AllowCombatHandler(this)
         pdcCheckService = PDCCheckService(this)
         cooldownService = CooldownService()
@@ -71,8 +71,8 @@ class HubCombat : ZapperJavaPlugin() {
     private fun registerEvents() {
         server.pluginManager.registerSuspendingEvents(PlayerHitListener(pdcCheckService, allowCombatHandler), this)
         server.pluginManager.registerSuspendingEvents(PlayerDeathListener(pdcCheckService, allowCombatHandler), this)
-        server.pluginManager.registerEvents(PlayerRespawnListener(weaponProvideService, pdcCheckService, cooldownService), this)
-        server.pluginManager.registerEvents(PlayerJoinListener(weaponProvideService, pdcCheckService, cooldownService), this)
+        server.pluginManager.registerEvents(PlayerRespawnListener(loadOutManager, pdcCheckService, cooldownService), this)
+        server.pluginManager.registerEvents(PlayerJoinListener(loadOutManager, pdcCheckService, cooldownService), this)
         server.pluginManager.registerEvents(ItemHoldListener(pdcCheckService, allowCombatHandler, cooldownService), this)
         server.pluginManager.registerEvents(PlayerLeaveListener(allowCombatHandler, cooldownService), this)
         server.pluginManager.registerEvents(ItemDamageListener(pdcCheckService), this)
@@ -81,7 +81,7 @@ class HubCombat : ZapperJavaPlugin() {
 
     private fun hook(){
         if(server.pluginManager.getPlugin("PlaceholderAPI") != null) {
-            PlaceholderAPIHook(cooldownService).register()
+            PlaceholderAPIHook(cooldownService, allowCombatHandler).register()
         }
     }
 
