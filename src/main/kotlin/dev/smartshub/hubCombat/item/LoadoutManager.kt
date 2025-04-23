@@ -1,18 +1,16 @@
 package dev.smartshub.hubCombat.item
 
-import dev.smartshub.hubCombat.HubCombat
 import dev.smartshub.hubCombat.storage.file.Configuration
+import dev.smartshub.hubCombat.storage.file.FileManager
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemFlag
 
-class LoadoutManager(
-    private val plugin: HubCombat,
-    private val config: Configuration
-) {
+class LoadoutManager() {
 
-    // List of Load-Outs
+    private var config: Configuration = FileManager.get("config")!!
     private val loadouts: Map<String, LoadOut> = loadLoadouts()
 
 
@@ -32,7 +30,7 @@ class LoadoutManager(
                 38 -> inventory.chestplate = itemStack
                 39 -> inventory.helmet = itemStack
                 in 0..35 -> inventory.setItem(item.slot, itemStack)
-                else -> plugin.logger.warning("Invalid slot ${item.slot} in loadout for ${player.name}")
+                else -> Bukkit.getLogger().warning("Invalid slot ${item.slot} in loadout for ${player.name}")
             }
         }
     }
