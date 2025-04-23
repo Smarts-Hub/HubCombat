@@ -13,7 +13,7 @@ class PDCCheckService(private val plugin: HubCombat) {
         if (!item.hasItemMeta()) return false
         val meta = item.itemMeta ?: return false
 
-        val key = NamespacedKey(plugin, "hubCombatWeapon")
+        val key = NamespacedKey(plugin, "hubCombatItem")
         return meta.persistentDataContainer.has(key, PersistentDataType.STRING)
     }
 
