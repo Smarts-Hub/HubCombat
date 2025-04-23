@@ -34,6 +34,14 @@ object Msg {
         return components
     }
 
+    fun parseList(lore: List<String>) : List<TextComponent> {
+        val components = mutableListOf<TextComponent>()
+        lore.forEach {
+            components.add(parse(it))
+        }
+        return components
+    }
+
     fun send(player: Player, path: String){
         plugin.launch {
             player.sendMessage(parse(getMsg(path), player))
