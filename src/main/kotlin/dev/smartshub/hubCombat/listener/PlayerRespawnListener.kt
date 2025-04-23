@@ -1,6 +1,6 @@
 package dev.smartshub.hubCombat.listener
 
-import dev.smartshub.hubCombat.item.LoadoutManager
+import dev.smartshub.hubCombat.item.LoadOutManager
 import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.service.PDCCheckService
 import org.bukkit.event.EventHandler
@@ -8,7 +8,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerRespawnEvent
 
 class PlayerRespawnListener(
-    private val loadoutManager: LoadoutManager,
+    private val loadoutManager: LoadOutManager,
     private val pdcCheckService: PDCCheckService,
     private val cooldownService: CooldownService
 ) : Listener {

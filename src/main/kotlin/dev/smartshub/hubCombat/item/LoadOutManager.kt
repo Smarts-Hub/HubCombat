@@ -8,7 +8,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemFlag
 
-class LoadoutManager() {
+class LoadOutManager() {
 
     private var config: Configuration = FileManager.get("config")!!
     private val loadouts: Map<String, LoadOut> = loadLoadouts()
