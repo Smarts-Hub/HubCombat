@@ -32,6 +32,7 @@
 - `%hubcombat_deaths%`
 - `%hubcombat_hits%`
 - `%hubcombat_time_left%`
+- `%hubcombat_is_in_combat%` (returns "true"/"false")
 
 ---
 
@@ -47,9 +48,6 @@
 👊 Entities or players without the weapon **can't deal damage** — total control over hub PvP!
 
 ---
-
-## 🛣️ Roadmap
-
 - 🗡️ Add **multiple weapons** via permissions.
 - 🛡️ Add **multiple armors** via permissions.
 - 🧩 More placeholders — suggest yours!
