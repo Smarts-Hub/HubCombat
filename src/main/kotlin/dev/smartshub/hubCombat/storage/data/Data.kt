@@ -35,6 +35,9 @@ object Data {
     fun getDeathsFromCache(playerId: UUID): Int =
         cache.getPlayerStats(playerId)?.deaths ?: 0
 
+    fun getKDRFromCache(playerId: UUID): Double =
+        cache.getPlayerStats(playerId)?.kdr ?: 0.0
+
     fun getHitsFromCache(playerId: UUID): Int =
         cache.getPlayerStats(playerId)?.hits ?: 0
 
@@ -67,6 +70,8 @@ object Data {
         playerStatsDAO.getPlayerStats(playerId)
 
     private suspend fun updatePlayerStats(playerId: UUID, newStats: PlayerStats) {
-        playerStatsDAO.updatePlayerStats(playerId, newStats)
+        val kdr: Double = (newStats.kills / newStats.deaths).toDouble()
+        val stats: PlayerStats = newStats.copy(kdr = kdr)
+        playerStatsDAO.updatePlayerStats(playerId, stats)
     }
 }

@@ -34,6 +34,10 @@ class PlaceholderAPIHook(
                 Data.getDeathsFromCache(player.uniqueId).toString()
             }
 
+            "kdr" -> {
+                Data.getKDRFromCache(player.uniqueId).toString()
+            }
+
             "hits" -> {
                 Data.getHitsFromCache(player.uniqueId).toString()
             }

@@ -64,6 +64,7 @@ class PlayerStatsDAO(
                 PlayerStats(
                     kills = it[Players.kills],
                     deaths = it[Players.deaths],
+                    kdr = it[Players.kdr],
                     hits = it[Players.hits]
                 )
             }
@@ -72,7 +73,7 @@ class PlayerStatsDAO(
         stats?.let {
             cache.updatePlayerStats(playerId, it)
         } ?: run {
-            stats = PlayerStats(0, 0, 0)
+            stats = PlayerStats(0, 0, 0.0, 0)
         }
 
         return stats!!
@@ -83,6 +84,7 @@ class PlayerStatsDAO(
             Players.update({ Players.id eq playerId }) {
                 it[kills] = newStats.kills
                 it[deaths] = newStats.deaths
+                it[kdr] = newStats.kdr
                 it[hits] = newStats.hits
             }
         }
@@ -96,10 +98,11 @@ class PlayerStatsDAO(
                 it[id] = playerId
                 it[kills] = 0
                 it[deaths] = 0
+                it[kdr] = 0.0
                 it[hits] = 0
             }
         }
-        cache.updatePlayerStats(playerId, PlayerStats(0, 0, 0))
+        cache.updatePlayerStats(playerId, PlayerStats(0, 0, 0.0, 0))
     }
 
     suspend fun deletePlayer(playerId: UUID) {

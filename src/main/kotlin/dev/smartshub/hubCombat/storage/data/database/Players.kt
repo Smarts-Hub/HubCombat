@@ -6,6 +6,7 @@ object Players : Table() {
     val id = uuid("id")
     val kills = integer("kills").default(0)
     val deaths = integer("deaths").default(0)
+    val kdr = double("kdr").default(0.0)
     val hits = integer("hits").default(0)
 
     override val primaryKey = PrimaryKey(id)
