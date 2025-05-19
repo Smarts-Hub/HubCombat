@@ -19,7 +19,7 @@ class HubCombatCommand(
         FileManager.get("config")?.reloadFile()
         FileManager.get("lang")?.reloadFile()
         allowCombatHandler.clearCombatAllowed()
-        Msg.send(actor.sender(), "config-reloaded")
+        Msg.send(actor.sender(), "reload-complete")
     }
 
 }
