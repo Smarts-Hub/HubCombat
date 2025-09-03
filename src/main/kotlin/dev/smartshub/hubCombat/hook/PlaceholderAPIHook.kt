@@ -3,7 +3,6 @@ package dev.smartshub.hubCombat.hook
 import dev.smartshub.hubCombat.combat.AllowCombatHandler
 import dev.smartshub.hubCombat.service.CooldownService
 import dev.smartshub.hubCombat.storage.data.Data
-import dev.smartshub.hubCombat.task.Timer
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 

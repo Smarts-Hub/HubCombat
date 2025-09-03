@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     kotlin("jvm") version "2.1.20-RC"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.14"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
     id("io.github.revxrsal.zapper") version "1.0.3"
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
 group = "dev.smartshub"
-version = "1.2.0"
+version = "1.2.1"
 
 repositories {
     mavenCentral()
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.7-R0.1-SNAPSHOT")
     compileOnly ("me.clip:placeholderapi:2.11.6")
     zap("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     zap("com.h2database:h2:2.2.220")

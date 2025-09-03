@@ -4,15 +4,26 @@ import com.github.shynixn.mccoroutine.bukkit.launch
 import dev.smartshub.hubCombat.HubCombat
 import dev.smartshub.hubCombat.storage.file.FileManager
 import me.clip.placeholderapi.PlaceholderAPI
+import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
+import net.kyori.adventure.text.format.TextDecoration
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import java.util.function.UnaryOperator
 
 object Msg {
 
-    private val miniMsg = MiniMessage.miniMessage()
+    private val miniMsg = MiniMessage.builder()
+    .postProcessor(UnaryOperator { component: Component? ->
+        component!!.decorationIfAbsent(
+            TextDecoration.ITALIC,
+            TextDecoration.State.FALSE
+        )
+    })
+    .build()
     private lateinit var plugin: HubCombat
+
 
     fun init(plugin: HubCombat) {
         this.plugin = plugin
