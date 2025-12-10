@@ -84,3 +84,5 @@ replay_pid*
 *.swp
 *.swo
 *~
+
+bin

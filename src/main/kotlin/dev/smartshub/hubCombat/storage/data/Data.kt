@@ -70,8 +70,12 @@ object Data {
         playerStatsDAO.getPlayerStats(playerId)
 
     private suspend fun updatePlayerStats(playerId: UUID, newStats: PlayerStats) {
-        val kdr: Double = (newStats.kills / newStats.deaths).toDouble()
-        val stats: PlayerStats = newStats.copy(kdr = kdr)
+        val kdr = when {
+            newStats.deaths == 0 && newStats.kills == 0 -> 0.0
+            newStats.deaths == 0 -> newStats.kills.toDouble()
+            else -> newStats.kills.toDouble() / newStats.deaths.toDouble()
+        }
+        val stats = newStats.copy(kdr = kdr)
         playerStatsDAO.updatePlayerStats(playerId, stats)
     }
 }
