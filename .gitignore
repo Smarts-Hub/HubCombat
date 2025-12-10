@@ -1,0 +1,86 @@
+############################
+# Gradle
+############################
+.gradle/
+**/.gradle/
+build/
+**/build/
+out/
+**/out/
+
+# Gradle Wrapper logs
+.gradle-build/
+.gradle-test-kit/
+
+# Local Gradle properties (never commit secrets)
+gradle-local.properties
+
+
+############################
+# IntelliJ IDEA / JetBrains
+############################
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# IntelliJ module/workspace files
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# JetBrains build output
+out/
+
+
+############################
+# Kotlin
+############################
+.kotlin/
+.kotlinc/
+
+
+############################
+# Java
+############################
+*.class
+*.log
+
+
+############################
+# OS / System Files
+############################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+############################
+# Archives / Packaging
+############################
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.tgz
+
+
+############################
+# Logs / Reports
+############################
+*.log
+*.stacktrace
+hs_err_pid*
+replay_pid*
+
+
+############################
+# IDE Miscellaneous
+############################
+*.swp
+*.swo
+*~
